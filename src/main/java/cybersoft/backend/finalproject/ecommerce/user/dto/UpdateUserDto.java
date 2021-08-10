@@ -1,6 +1,9 @@
 package cybersoft.backend.finalproject.ecommerce.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import cybersoft.backend.finalproject.ecommerce.user.annotation.CheckNumber;
+import cybersoft.backend.finalproject.ecommerce.user.annotation.CheckUserIdLength;
+import cybersoft.backend.finalproject.ecommerce.user.annotation.ExistsUserId;
 import cybersoft.backend.finalproject.ecommerce.user.utils.UserRole;
 import cybersoft.backend.finalproject.ecommerce.user.utils.UserStatus;
 import cybersoft.backend.finalproject.ecommerce.utils.DateUtils;
@@ -20,9 +23,14 @@ import java.time.LocalDateTime;
 @Setter
 public class UpdateUserDto {
     @NotBlank(message = "{user.user-id.notblank}")
+    @ExistsUserId
+    @CheckNumber(message = "{user.user-id.number}")
+    @CheckUserIdLength
     private String userId;
 
     @NotBlank(message = "{user.phone.notblank}")
+    @CheckNumber(message = "{user.phone.number}")
+    @Size(min = 10, max = 11, message = "{user.phone.length}")
     private String phone;
 
     @NotBlank(message = "{user.fullname.notblank}")

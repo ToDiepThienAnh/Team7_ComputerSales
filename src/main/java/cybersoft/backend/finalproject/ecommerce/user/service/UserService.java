@@ -11,4 +11,10 @@ public interface UserService extends IGenericService<User, Long> {
     public User update(UpdateUserDto dto, String username);
 
     public String deleteByUsername(String username);
+
+    public boolean isEmailTaken(String email);
+
+    public boolean isUsernameTaken(String username);
+
+    public boolean isUserIdTaken(String userId);
 }

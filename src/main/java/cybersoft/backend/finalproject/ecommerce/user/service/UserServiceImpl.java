@@ -46,4 +46,19 @@ public class UserServiceImpl extends GenericService<User, Long> implements UserS
         userRepository.deleteById(user.get().getId());
         return "Delete successfully";
     }
+
+    @Override
+    public boolean isEmailTaken(String email) {
+        return userRepository.countByEmail(email) >= 1;
+    }
+
+    @Override
+    public boolean isUsernameTaken(String username) {
+        return userRepository.countByUsername(username) >= 1;
+    }
+
+    @Override
+    public boolean isUserIdTaken(String userId) {
+        return userRepository.countByUserId(userId) >= 1;
+    }
 }
